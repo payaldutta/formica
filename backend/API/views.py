@@ -17,7 +17,7 @@ from rest_framework.authtoken.models import Token
 load_dotenv()
 
 
-redirect_url_discord = "https://discord.com/api/oauth2/authorize?client_id=728306573696303135&permissions=68608&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Foauth2%2Flogin%2Fredirect%2F&response_type=code&scope=identify%20guilds%20bot"
+redirect_url_discord = "https://discord.com/api/oauth2/authorize?client_id=728306573696303135&permissions=76864&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Foauth2%2Flogin%2Fredirect%2F&response_type=code&scope=bot%20guilds%20identify"
 
 @login_required(login_url='login/')
 @api_view(["GET"])
@@ -179,9 +179,9 @@ def serverChannels(request, ServerID):
     
 def getServerChannels(access_token, serverid):
     print('Reached API query function')
-    discord_url = "https://discord.com/api/v6/guilds/"+serverid+"/channels"
-    response = requests.get(discord_url, headers={
-        'Authorization': 'Bearer %s' % access_token
+    #discord_url = "https://discord.com/api/v6/guilds/"+serverid+"/channels"
+    response = requests.get("https://discord.com/api/v6/guilds/"+serverid+"/channels", headers={
+        'Authorization': 'Bot %s' % os.getenv("BOT_SECRET")
     })
     channels = response.json()
     return channels
