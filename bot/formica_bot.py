@@ -5,7 +5,6 @@ from discord.ext import commands
 import asyncio
 import os
 import json
-#from decouple import config
 from dotenv import load_dotenv
 
 import globals 
@@ -287,6 +286,5 @@ async def on_reaction_add(reaction, user):
 
 # run bot
 BOT_TOKEN = os.getenv("TOKEN")
-#BOT_TOKEN = config("TOKEN")
 client.run(BOT_TOKEN)
 
